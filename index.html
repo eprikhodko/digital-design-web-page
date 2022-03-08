@@ -30,45 +30,171 @@
           src="./assets/img/hero-image-pierre-chatel-innocenti.jpg"
           alt="A building with the sunset background"
         />
-        <p>
-          Document Object Model, сокращённо DOM – объектная модель документа,
-          которая представляет все содержимое страницы в виде объектов, которые
-          можно менять.
-        </p>
-        <p>
-          Объект <code class="inline-code">document</code> – основная «входная
-          точка». С его помощью мы можем что-то создавать или менять на
-          странице.
-        </p>
-        <p>
-          Попробуйте скопировать этот код и выполнить его в консоли браузера:
-        </p>
-        <code>
-          <pre>
+        <section>
+          <p>
+            Document Object Model, сокращённо DOM – объектная модель документа,
+            которая представляет все содержимое страницы в виде объектов,
+            которые можно менять.
+          </p>
+          <p>
+            Объект <code class="inline-code">document</code> – основная «входная
+            точка». С его помощью мы можем что-то создавать или менять на
+            странице.
+          </p>
+          <p>
+            Попробуйте скопировать этот код и выполнить его в консоли браузера:
+          </p>
+          <code>
+            <pre>
 
-            // заменим цвет фона на красный,
-            document.body.style.background = "red";
-            
-            // а через секунду вернём как было
-            setTimeout(() => document.body.style.background = "", 1000);
+// заменим цвет фона на красный,
+document.body.style.background = "red";
+
+// а через секунду вернём как было
+setTimeout(() => document.body.style.background = "", 1000);
         </pre
-          >
-        </code>
-        <p>Фон нашей страницы на секунду станет красным.</p>
-        <p>
-          Мы использовали в примере только
-          <code class="inline-code">document.body.style</code>, но на самом деле
-          возможности по управлению страницей намного шире. Различные свойства и
-          методы описаны в спецификации:
-        </p>
-        <ul>
-          <li>
-            <strong>DOM Living Standard</strong> на
-            <a class="link" href="https://dom.spec.whatwg.org"
-              >https://dom.spec.whatwg.org</a
             >
-          </li>
-        </ul>
+          </code>
+          <p>Фон нашей страницы на секунду станет красным.</p>
+          <p>
+            Мы использовали в примере только
+            <code class="inline-code">document.body.style</code>, но на самом
+            деле возможности по управлению страницей намного шире. Различные
+            свойства и методы описаны в спецификации:
+          </p>
+          <ul>
+            <li>
+              <strong>DOM Living Standard</strong> на
+              <a class="link" href="https://dom.spec.whatwg.org"
+                >https://dom.spec.whatwg.org</a
+              >
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>DOM-дерево</h2>
+          <p>Основой HTML-документа являются теги.</p>
+          <p>
+            В соответствии с объектной моделью документа («Document Object
+            Model», коротко DOM), каждый HTML-тег является объектом. Вложенные
+            теги являются «детьми» родительского элемента. Текст, который
+            находится внутри тега, также является объектом.
+          </p>
+          <p>
+            Все эти объекты доступны при помощи JavaScript, мы можем
+            использовать их для изменения страницы.
+          </p>
+          <p>
+            Например, <code class="inline-code">document.body</code> – объект
+            для тега <code class="inline-code">&lt;body&gt;</code>.
+          </p>
+          <p>
+            Если запустить этот код в консоли, то
+            <code class="inline-code">&lt;body&gt;</code> станет красным на 3
+            секунды:
+          </p>
+          <code>
+            <pre>
+
+// сделать фон красным
+document.body.style.background = 'red'; 
+
+// вернуть назад
+setTimeout(() => document.body.style.background = '', 3000); 
+          </pre
+            >
+          </code>
+          <p>
+            Это был лишь небольшой пример того, что может DOM. Скоро мы изучим
+            много способов работать с DOM, но сначала нужно познакомиться с его
+            структурой.
+          </p>
+        </section>
+
+        <section>
+          <h2>Пример DOM</h2>
+          <p>Начнём с такого, простого, документа:</p>
+          <code>
+            <pre>
+
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;О лосях&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    Правда о лосях.
+&lt;/body&gt;
+&lt;/html&gt;
+          </pre
+            >
+          </code>
+          <p>
+            DOM – это представление HTML-документа в виде дерева тегов. Вот как
+            оно выглядит:
+          </p>
+          <img
+            class="image-responsive"
+            src="./assets/img/dom-tree-1.png"
+            alt="Dom tree for code above"
+          />
+          <p>Каждый узел этого дерева – это объект.</p>
+          <p>
+            Теги являются узлами-элементами (или просто элементами). Они
+            образуют структуру дерева:
+            <code class="inline-code">&lt;html&gt;</code> – это корневой узел,
+            <code class="inline-code">&lt;head&gt;</code> и
+            <code class="inline-code">&lt;body&gt;</code> его дочерние узлы и
+            т.д.
+          </p>
+          <p>
+            Текст внутри элементов образует текстовые узлы, обозначенные как
+            <code class="inline-code">#text</code>. Текстовый узел содержит в
+            себе только строку текста. У него не может быть потомков, т.е. он
+            находится всегда на самом нижнем уровне.
+          </p>
+          <p>
+            Например, в теге <code class="inline-code">&lt;title&gt;</code> есть
+            текстовый узел <code class="inline-code">"О лосях"</code>.
+          </p>
+          <p>Обратите внимание на специальные символы в текстовых узлах:</p>
+          <ul>
+            <li>
+              перевод строки: <code class="inline-code">↵</code> (в JavaScript
+              он обозначается как <code class="inline-code">\n</code>)
+            </li>
+            <li>пробел: <code class="inline-code">␣</code></li>
+          </ul>
+          <p>
+            Пробелы и переводы строки – это полноправные символы, как буквы и
+            цифры. Они образуют текстовые узлы и становятся частью дерева DOM.
+            Так, в примере выше в теге
+            <code class="inline-code">&lt;head&gt;</code> есть несколько
+            пробелов перед <code class="inline-code">&lt;title&gt;</code>,
+            которые образуют текстовый узел
+            <code class="inline-code">#text</code> (он содержит в себе только
+            перенос строки и несколько пробелов).
+          </p>
+          <p>Существует всего два исключения из этого правила:</p>
+          <ol>
+            <li>
+              По историческим причинам пробелы и перевод строки перед тегом
+              <code class="inline-code">&lt;head&gt;</code> игнорируются
+            </li>
+            <li>
+              Если мы записываем что-либо после закрывающего тега
+              <code class="inline-code">&lt;/body&gt;</code> , браузер
+              автоматически перемещает эту запись в конец
+              <code class="inline-code">body</code>, поскольку спецификация HTML
+              требует, чтобы всё содержимое было внутри
+              <code class="inline-code">&lt;body&gt;</code>
+              . Поэтому после закрывающего тега
+              <code class="inline-code">&lt;/body&gt;</code>
+              не может быть никаких пробелов.
+            </li>
+          </ol>
+        </section>
       </div>
     </main>
   </body>
