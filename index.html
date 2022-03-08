@@ -38,7 +38,35 @@
             >
           </figcaption>
         </figure>
-        <section>
+
+        <p><strong> Содержание: </strong></p>
+        <nav>
+          <ul class="nav-list">
+            <li>
+              <a href="#document-object-model">Document Object Model</a>
+            </li>
+            <li>
+              <a href="#dom-tree">DOM-дерево</a>
+            </li>
+            <li>
+              <a href="#dom-example">Пример DOM</a>
+            </li>
+            <li>
+              <a href="#another-types-of-nodes">Другие типы узлов</a>
+            </li>
+            <li>
+              <a href="#make-experiments">Поэкспериментируйте сами</a>
+            </li>
+            <li>
+              <a href="#interactions-with-console">Взаимодействие с консолью</a>
+            </li>
+            <li>
+              <a href="#summary">Итого</a>
+            </li>
+          </ul>
+        </nav>
+
+        <section id="document-object-model">
           <p>
             Document Object Model, сокращённо DOM – объектная модель документа,
             которая представляет все содержимое страницы в виде объектов,
@@ -80,7 +108,7 @@ setTimeout(() => document.body.style.background = "", 1000);
           </ul>
         </section>
 
-        <section>
+        <section id="dom-tree">
           <h2>DOM-дерево</h2>
           <p>Основой HTML-документа являются теги.</p>
           <p>
@@ -120,7 +148,7 @@ setTimeout(() => document.body.style.background = '', 3000);
           </p>
         </section>
 
-        <section>
+        <section id="dom-example">
           <h2>Пример DOM</h2>
           <p>Начнём с такого, простого, документа:</p>
           <code>
@@ -251,7 +279,7 @@ setTimeout(() => document.body.style.background = '', 3000);
           </blockquote>
         </section>
 
-        <section>
+        <section id="another-types-of-nodes">
           <h2>Другие типы узлов</h2>
           <p>
             Есть и некоторые другие типы узлов, кроме элементов и текстовых
@@ -334,7 +362,7 @@ setTimeout(() => document.body.style.background = '', 3000);
           </ol>
         </section>
 
-        <section>
+        <section id="make-experiments">
           <h2>Поэкспериментируйте сами</h2>
           <p>
             Чтобы посмотреть структуру DOM в реальном времени, попробуйте
@@ -411,7 +439,7 @@ setTimeout(() => document.body.style.background = '', 3000);
           </p>
         </section>
 
-        <section>
+        <section id="interactions-with-console">
           <h2>Взаимодействие с консолью</h2>
           <p>
             При работе с DOM нам часто требуется применить к нему JavaScript.
@@ -481,7 +509,7 @@ setTimeout(() => document.body.style.background = '', 3000);
           </p>
         </section>
 
-        <section>
+        <section id="summary">
           <h2>Итого</h2>
           <p>HTML/XML документы представлены в браузере в виде DOM-дерева.</p>
           <ul>
@@ -501,12 +529,11 @@ setTimeout(() => document.body.style.background = '', 3000);
           <p>
             Здесь мы рассмотрели основы, наиболее часто используемые и важные
             действия для начала разработки. Подробную документацию по
-            инструментам разработки Chrome Developer Tools можно найти на
-            странице
+            инструментам разработки Chrome Developer Tools можно найти
             <a
               class="link"
               href="https://developers.google.com/web/tools/chrome-devtools"
-              >https://developers.google.com/web/tools/chrome-devtools</a
+              >здесь</a
             >. Лучший способ изучить инструменты – походить по разным вкладкам,
             почитать меню: большинство действий очевидны для пользователя.
             Позже, когда вы немного их изучите, прочитайте документацию и

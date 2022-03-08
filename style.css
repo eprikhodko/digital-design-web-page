@@ -73,12 +73,12 @@ figcaption {
   display: block;
 }
 
-.link {
+a {
   color: #436ebd;
   text-decoration: none;
 }
 
-.link:hover {
+a:hover {
   color: #c4433a;
   text-decoration: underline;
 }
