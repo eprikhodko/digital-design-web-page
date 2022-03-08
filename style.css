@@ -46,16 +46,18 @@ p {
 
 .inline-code,
 pre {
-  font-family: Consolas, Lucida Console, Menlo, Monaco, monospace;
   padding: 2px 4px;
+
+  font-family: Consolas, Lucida Console, Menlo, Monaco, monospace;
+
   background: #f7f4f3;
   border-radius: 2px;
   color: #716f6e;
 }
 
 code pre {
-  overflow-x: scroll;
   padding: 1em 2em;
+  overflow-x: scroll;
 }
 
 blockquote {
@@ -67,10 +69,11 @@ blockquote {
 }
 
 figcaption {
+  display: block;
+
   font-style: italic;
   text-align: center;
   opacity: 0.75;
-  display: block;
 }
 
 a {
@@ -93,8 +96,8 @@ a:hover {
 ===================== */
 
 .container-main {
-  padding: 0 1em;
   max-width: 850px;
+  padding: 0 1em;
   margin: 0 auto;
 }
 
@@ -121,18 +124,18 @@ figure {
 
 .back-to-top {
   position: fixed;
-  bottom: 20px; /* Place the button at the bottom of the page */
+  bottom: 12px; /* Place the button at the bottom of the page */
   right: 30px; /* Place the button 30px from the right */
   z-index: 99; /* Make sure it does not overlap */
+  padding: 0.8em;
 
   font-size: 1.8rem;
   font-weight: 700;
-  background: #e299ac;
   color: #ffffff;
-  cursor: pointer;
-  padding: 0.8em;
-  border-radius: 10px;
 
+  background: #e299ac;
+  border-radius: 10px;
+  cursor: pointer;
   border: none;
   outline: none;
 }
