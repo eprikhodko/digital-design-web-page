@@ -73,6 +73,16 @@ figcaption {
   display: block;
 }
 
+.link {
+  color: #436ebd;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #c4433a;
+  text-decoration: underline;
+}
+
 .text-footer {
   margin: 0;
   text-align: center;
