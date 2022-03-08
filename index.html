@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>DOM (Document Object Model)</title>
+
+    <link rel="stylesheet" href="./style.css" />
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container-main">
+        <h1>DOM (Document Object Model)</h1>
+      </div>
+    </header>
+    <main class="main">
+      <button class="back-to-top" type="button">back to top</button>
+      <div class="container-main">
+        <figure>
+          <img
+            class="hero-image"
+            src="./assets/img/hero-image-pierre-chatel-innocenti.jpg"
+            alt="Здание на фоне заката"
+          />
+          <figcaption>
+            Photo by
+            <a class="link" href="https://unsplash.com/@chatelp"
+              >Pierre Châtel-Innocenti</a
+            >
+          </figcaption>
+        </figure>
+
+        <p><strong> Содержание: </strong></p>
+        <nav>
+          <ul class="nav-list">
+            <li>
+              <a href="#introduction">Введение</a>
+            </li>
+            <li>
+              <a href="#dom-tree">DOM-дерево</a>
+            </li>
+            <li>
+              <a href="#dom-example">Пример DOM</a>
+            </li>
+            <li>
+              <a href="#another-types-of-nodes">Другие типы узлов</a>
+            </li>
+            <li>
+              <a href="#make-experiments">Поэкспериментируйте сами</a>
+            </li>
+            <li>
+              <a href="#interactions-with-console">Взаимодействие с консолью</a>
+            </li>
+            <li>
+              <a href="#summary">Итого</a>
+            </li>
+          </ul>
+        </nav>
+
+        <section id="introduction">
+          <h2>Введение</h2>
+          <p>
+            Document Object Model, сокращённо DOM – объектная модель документа,
+            которая представляет все содержимое страницы в виде объектов,
+            которые можно менять.
+          </p>
+          <p>
+            Объект <code class="inline-code">document</code> – основная «входная
+            точка». С его помощью мы можем что-то создавать или менять на
+            странице.
+          </p>
+          <p>
+            Попробуйте скопировать этот код и выполнить его в консоли браузера:
+          </p>
+          <code>
+            <pre>
+
+// заменим цвет фона на красный,
+document.body.style.background = "red";
+
+// а через секунду вернём как было
+setTimeout(() => document.body.style.background = "", 1000);
+        </pre
+            >
+          </code>
+          <p>Фон нашей страницы на секунду станет красным.</p>
+          <p>
+            Мы использовали в примере только
+            <code class="inline-code">document.body.style</code>, но на самом
+            деле возможности по управлению страницей намного шире. Различные
+            свойства и методы описаны в спецификации:
+          </p>
+          <ul>
+            <li>
+              <strong>DOM Living Standard</strong> на
+              <a class="link" href="https://dom.spec.whatwg.org"
+                >https://dom.spec.whatwg.org</a
+              >
+            </li>
+          </ul>
+        </section>
+
+        <section id="dom-tree">
+          <h2>DOM-дерево</h2>
+          <p>Основой HTML-документа являются теги.</p>
+          <p>
+            В соответствии с объектной моделью документа («Document Object
+            Model», коротко DOM), каждый HTML-тег является объектом. Вложенные
+            теги являются «детьми» родительского элемента. Текст, который
+            находится внутри тега, также является объектом.
+          </p>
+          <p>
+            Все эти объекты доступны при помощи JavaScript, мы можем
+            использовать их для изменения страницы.
+          </p>
+          <p>
+            Например, <code class="inline-code">document.body</code> – объект
+            для тега <code class="inline-code">&lt;body&gt;</code>.
+          </p>
+          <p>
+            Если запустить этот код в консоли, то
+            <code class="inline-code">&lt;body&gt;</code> станет красным на 3
+            секунды:
+          </p>
+          <code>
+            <pre>
+
+// сделать фон красным
+document.body.style.background = 'red'; 
+
+// вернуть назад
+setTimeout(() => document.body.style.background = '', 3000); 
+          </pre
+            >
+          </code>
+          <p>
+            Это был лишь небольшой пример того, что может DOM. Скоро мы изучим
+            много способов работать с DOM, но сначала нужно познакомиться с его
+            структурой.
+          </p>
+        </section>
+
+        <section id="dom-example">
+          <h2>Пример DOM</h2>
+          <p>Начнём с такого, простого, документа:</p>
+          <code>
+            <pre>
+
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;О лосях&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    Правда о лосях.
+&lt;/body&gt;
+&lt;/html&gt;
+          </pre
+            >
+          </code>
+          <p>
+            DOM – это представление HTML-документа в виде дерева тегов. Вот как
+            оно выглядит:
+          </p>
+          <figure>
+            <img
+              class="image-responsive"
+              src="./assets/img/dom-tree-1.png"
+              alt="Схема DOM для кода выше"
+            />
+            <figcaption>Схема DOM для кода выше</figcaption>
+          </figure>
+          <p>Каждый узел этого дерева – это объект.</p>
+          <p>
+            Теги являются узлами-элементами (или просто элементами). Они
+            образуют структуру дерева:
+            <code class="inline-code">&lt;html&gt;</code> – это корневой узел,
+            <code class="inline-code">&lt;head&gt;</code> и
+            <code class="inline-code">&lt;body&gt;</code> его дочерние узлы и
+            т.д.
+          </p>
+          <p>
+            Текст внутри элементов образует текстовые узлы, обозначенные как
+            <code class="inline-code">#text</code>. Текстовый узел содержит в
+            себе только строку текста. У него не может быть потомков, т.е. он
+            находится всегда на самом нижнем уровне.
+          </p>
+          <p>
+            Например, в теге <code class="inline-code">&lt;title&gt;</code> есть
+            текстовый узел <code class="inline-code">"О лосях"</code>.
+          </p>
+          <p>Обратите внимание на специальные символы в текстовых узлах:</p>
+          <ul>
+            <li>
+              перевод строки: <code class="inline-code">↵</code> (в JavaScript
+              он обозначается как <code class="inline-code">\n</code>)
+            </li>
+            <li>пробел: <code class="inline-code">␣</code></li>
+          </ul>
+          <p>
+            Пробелы и переводы строки – это полноправные символы, как буквы и
+            цифры. Они образуют текстовые узлы и становятся частью дерева DOM.
+            Так, в примере выше в теге
+            <code class="inline-code">&lt;head&gt;</code> есть несколько
+            пробелов перед <code class="inline-code">&lt;title&gt;</code>,
+            которые образуют текстовый узел
+            <code class="inline-code">#text</code> (он содержит в себе только
+            перенос строки и несколько пробелов).
+          </p>
+          <p>Существует всего два исключения из этого правила:</p>
+          <ol>
+            <li>
+              По историческим причинам пробелы и перевод строки перед тегом
+              <code class="inline-code">&lt;head&gt;</code> игнорируются
+            </li>
+            <li>
+              Если мы записываем что-либо после закрывающего тега
+              <code class="inline-code">&lt;/body&gt;</code> , браузер
+              автоматически перемещает эту запись в конец
+              <code class="inline-code">body</code>, поскольку спецификация HTML
+              требует, чтобы всё содержимое было внутри
+              <code class="inline-code">&lt;body&gt;</code>
+              . Поэтому после закрывающего тега
+              <code class="inline-code">&lt;/body&gt;</code>
+              не может быть никаких пробелов.
+            </li>
+          </ol>
+          <p>
+            В остальных случаях всё просто – если в документе есть пробелы (или
+            любые другие символы), они становятся текстовыми узлами дерева DOM,
+            и если мы их удалим, то в DOM их тоже не будет.
+          </p>
+          <p>Здесь пробельных текстовых узлов нет:</p>
+          <code>
+            <pre>
+
+&lt;!DOCTYPE HTML>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;О лосях&lt;/title&gt;&lt;/head&gt;&lt;body&gt;Правда о лосях.&lt;/body&gt;&lt;/html&gt;
+          </pre
+            >
+          </code>
+          <figure>
+            <img
+              class="image-responsive"
+              src="./assets/img/dom-tree-2.png"
+              alt="Схема DOM для кода выше"
+            />
+            <figcaption>Схема DOM для кода выше</figcaption>
+          </figure>
+          <blockquote>
+            <p>
+              <span class="text-important">
+                Пробелы по краям строк и пробельные текстовые узлы скрыты в
+                инструментах разработки
+              </span>
+            </p>
+            <p>
+              Когда мы работаем с деревом DOM, используя инструменты
+              разработчика в браузере (которые мы рассмотрим позже), пробелы в
+              начале/конце текста и пустые текстовые узлы (переносы строк) между
+              тегами обычно не отображаются.
+            </p>
+            <p>
+              Таким образом инструменты разработки экономят место на экране.
+            </p>
+            <p>
+              В дальнейших иллюстрациях DOM мы также будем для краткости
+              пропускать пробельные текстовые узлы там, где они не имеют
+              значения. Обычно они не влияют на то, как отображается документ.
+            </p>
+          </blockquote>
+        </section>
+
+        <section id="another-types-of-nodes">
+          <h2>Другие типы узлов</h2>
+          <p>
+            Есть и некоторые другие типы узлов, кроме элементов и текстовых
+            узлов.
+          </p>
+          <p>Например, узел-комментарий:</p>
+          <code>
+            <pre>
+
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;О лосях&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    Правда о лосях.
+    &lt;ol&gt;
+        &lt;li&gt;Лось -- животное хитрое&lt;/li&gt;
+        &lt;!-- комментарий --&gt;
+        &lt;li&gt;...и коварное!&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+          </pre
+            >
+          </code>
+          <figure>
+            <img
+              class="image-responsive"
+              src="./assets/img/dom-tree-3.png"
+              alt="Схема DOM для кода выше"
+            />
+            <figcaption>Схема DOM для кода выше</figcaption>
+          </figure>
+          <p>
+            Здесь мы видим узел нового типа – комментарий, обозначенный как
+            <code class="inline-code">#comment</code>, между двумя текстовыми
+            узлами.
+          </p>
+          <p>
+            Казалось бы – зачем комментарий в DOM? Он никак не влияет на
+            визуальное отображение. Но есть важное правило: если что-то есть в
+            HTML, то оно должно быть в DOM-дереве.
+          </p>
+          <p>
+            <strong
+              >Все, что есть в HTML, даже комментарии, является частью DOM.
+            </strong>
+          </p>
+          <p>
+            Даже директива
+            <code class="inline-code">&lt;!DOCTYPE...&gt;</code> , которую мы
+            ставим в начале HTML, тоже является DOM-узлом. Она находится в
+            дереве DOM прямо перед
+            <code class="inline-code">&lt;html&gt;</code>. Мы не будем
+            рассматривать этот узел, мы даже не рисуем его на наших диаграммах,
+            но он существует.
+          </p>
+          <p>
+            Даже объект <code class="inline-code">document</code>,
+            представляющий весь документ, формально является DOM-узлом.
+          </p>
+          <p>
+            Существует
+            <a class="link" href="https://dom.spec.whatwg.org/#node"
+              >12 типов узлов.</a
+            >
+            Но на практике мы в основном работаем с 4 из них:
+          </p>
+          <ol>
+            <li>
+              <code class="inline-code">document</code> – «входная точка» в DOM.
+            </li>
+            <li>узлы-элементы – HTML-теги, основные строительные блоки.</li>
+            <li>текстовые узлы – содержат текст.</li>
+            <li>
+              комментарии – иногда в них можно включить информацию, которая не
+              будет показана, но доступна в DOM для чтения JS.
+            </li>
+          </ol>
+        </section>
+
+        <section id="make-experiments">
+          <h2>Поэкспериментируйте сами</h2>
+          <p>
+            Чтобы посмотреть структуру DOM в реальном времени, попробуйте
+            <a
+              class="link"
+              href="http://software.hixie.ch/utilities/js/live-dom-viewer/"
+              >Live DOM Viewer.</a
+            >
+            Просто введите что-нибудь в поле, и ниже вы увидите, как меняется
+            DOM.
+          </p>
+          <p>
+            Другой способ исследовать DOM – это использовать инструменты
+            разработчика браузера. Это то, что мы каждый день делаем при
+            разработке.
+          </p>
+          <p>
+            Для этого откройте страницу
+            <a
+              class="link"
+              href="https://learn.javascript.ru/article/dom-nodes/elks.html"
+              >elks.html</a
+            >, включите инструменты разработчика и перейдите на вкладку
+            Elements.
+          </p>
+          <p>Выглядит примерно так:</p>
+          <figure>
+            <img
+              class="image-responsive"
+              src="./assets/img/elks.png"
+              alt="скриншот вкладки 'elements' браузера с открытым файлом elks.html"
+            />
+            <figcaption>
+              Исследование DOM при помощи инструментов разработчика
+            </figcaption>
+          </figure>
+          <p>
+            Вы можете увидеть DOM, понажимать на элементы, детально рассмотреть
+            их и так далее.
+          </p>
+          <p>
+            Обратите внимание, что структура DOM в инструментах разработчика
+            отображается в упрощённом виде. Текстовые узлы показаны как простой
+            текст. И кроме пробелов нет никаких «пустых» текстовых узлов. Ну и
+            отлично, потому что большую часть времени нас будут интересовать
+            узлы-элементы.
+          </p>
+          <p>
+            В правой части инструментов разработчика находятся следующие
+            подразделы:
+          </p>
+          <ul>
+            <li>
+              <strong>Styles</strong> – здесь мы видим CSS, применённый к
+              текущему элементу: правило за правилом, включая встроенные стили
+              (выделены серым). Почти всё можно отредактировать на месте,
+              включая размеры, внешние и внутренние отступы.
+            </li>
+            <li>
+              <strong>Computed</strong> – здесь мы видим итоговые CSS-свойства
+              элемента, которые он приобрёл в результате применения всего
+              каскада стилей (в том числе унаследованные свойства и т.д.).
+            </li>
+            <li>
+              <strong>Event Listeners</strong> – в этом разделе мы видим
+              обработчики событий, привязанные к DOM-элементам.
+            </li>
+            <li>… и т.д.</li>
+          </ul>
+
+          <p>
+            Лучший способ изучить инструменты разработчика – это прокликать их.
+            Большинство значений можно менять и тут же смотреть результат.
+          </p>
+        </section>
+
+        <section id="interactions-with-console">
+          <h2>Взаимодействие с консолью</h2>
+          <p>
+            При работе с DOM нам часто требуется применить к нему JavaScript.
+            Например: получить узел и запустить какой-нибудь код для его
+            изменения, чтобы посмотреть результат. Вот несколько подсказок, как
+            перемещаться между вкладками Elements и Console.
+          </p>
+          <p>Для начала:</p>
+          <ol>
+            <li>
+              На вкладке Elements выберите первый элемент
+              <code class="inline-code">&lt;li&gt;</code>.
+            </li>
+            <li>
+              Нажмите Esc – прямо под вкладкой Elements откроется Console.
+            </li>
+          </ol>
+          <p>
+            Последний элемент, выбранный во вкладке Elements, доступен в консоли
+            как <code class="inline-code">$0</code>; предыдущий, выбранный до
+            него, как <code class="inline-code">$1</code>и т.д.
+          </p>
+          <p>
+            Теперь мы можем запускать на них команды. Например
+            <code class="inline-code">$0.style.background = 'red'</code> сделает
+            выбранный элемент красным, как здесь:
+          </p>
+          <figure>
+            <img
+              class="image-responsive"
+              src="./assets/img/domconsole0.png"
+              alt="скриншот вкладки 'elements' браузера"
+            />
+            <figcaption>
+              Меняем цвет фона первого элемента упорядоченного списка на красный
+            </figcaption>
+          </figure>
+
+          <p>Это мы посмотрели как получить узел из Elements в Console.</p>
+          <p>
+            Есть и обратный путь: если есть переменная
+            <code class="inline-code">node</code>, ссылающаяся на DOM-узел,
+            можно использовать в консоли команду
+            <code class="inline-code">inspect(node)</code>, чтобы увидеть этот
+            элемент во вкладке Elements.
+          </p>
+          <p>
+            Или мы можем просто вывести DOM-узел в консоль и исследовать «на
+            месте», как <code class="inline-code">document.body </code>ниже:
+          </p>
+          <figure>
+            <img
+              class="image-responsive"
+              src="./assets/img/domconsole1.png"
+              alt="screenshot of a browser console"
+            />
+            <figcaption>Выводим DOM-узел в консоль</figcaption>
+          </figure>
+          <p>
+            Это может быть полезно для отладки. В следующей главе мы рассмотрим
+            доступ и изменение DOM при помощи JavaScript.
+          </p>
+          <p>
+            Инструменты разработчика браузера отлично помогают в разработке: мы
+            можем исследовать DOM, пробовать с ним что-то делать и смотреть, что
+            идёт не так.
+          </p>
+        </section>
+
+        <section id="summary">
+          <h2>Итого</h2>
+          <p>HTML/XML документы представлены в браузере в виде DOM-дерева.</p>
+          <ul>
+            <li>
+              Теги становятся узлами-элементами и формируют структуру документа.
+            </li>
+            <li>Текст становится текстовыми узлами.</li>
+            <li>
+              … и т.д. Всё, что записано в HTML, есть и в DOM-дереве, даже
+              комментарии.
+            </li>
+          </ul>
+          <p>
+            Для изменения элементов или проверки DOM-дерева мы можем
+            использовать инструменты разработчика в браузере.
+          </p>
+          <p>
+            Здесь мы рассмотрели основы, наиболее часто используемые и важные
+            действия для начала разработки. Подробную документацию по
+            инструментам разработки Chrome Developer Tools можно найти
+            <a
+              class="link"
+              href="https://developers.google.com/web/tools/chrome-devtools"
+              >здесь</a
+            >. Лучший способ изучить инструменты – походить по разным вкладкам,
+            почитать меню: большинство действий очевидны для пользователя.
+            Позже, когда вы немного их изучите, прочитайте документацию и
+            узнайте то, что осталось.
+          </p>
+        </section>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container-main">
+        <p class="text-footer">2022</p>
+      </div>
+    </footer>
+    <script src="./script.js"></script>
+  </body>
+</html>
