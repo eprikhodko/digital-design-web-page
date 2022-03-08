@@ -25,11 +25,17 @@
     </header>
     <main class="main">
       <div class="container-main">
-        <img
-          class="hero-image"
-          src="./assets/img/hero-image-pierre-chatel-innocenti.jpg"
-          alt="A building with the sunset background"
-        />
+        <figure>
+          <img
+            class="hero-image"
+            src="./assets/img/hero-image-pierre-chatel-innocenti.jpg"
+            alt="Здание на фоне заката"
+          />
+          <figcaption>
+            Photo by
+            <a href="https://unsplash.com/@chatelp">Pierre Châtel-Innocenti</a>
+          </figcaption>
+        </figure>
         <section>
           <p>
             Document Object Model, сокращённо DOM – объектная модель документа,
@@ -134,11 +140,14 @@ setTimeout(() => document.body.style.background = '', 3000);
             DOM – это представление HTML-документа в виде дерева тегов. Вот как
             оно выглядит:
           </p>
-          <img
-            class="image-responsive"
-            src="./assets/img/dom-tree-1.png"
-            alt="Dom tree for a code block above"
-          />
+          <figure>
+            <img
+              class="image-responsive"
+              src="./assets/img/dom-tree-1.png"
+              alt="Схема DOM для кода выше"
+            />
+            <figcaption>Схема DOM для кода выше</figcaption>
+          </figure>
           <p>Каждый узел этого дерева – это объект.</p>
           <p>
             Теги являются узлами-элементами (или просто элементами). Они
@@ -208,11 +217,14 @@ setTimeout(() => document.body.style.background = '', 3000);
           </pre
             >
           </code>
-          <img
-            class="image-responsive"
-            src="./assets/img/dom-tree-2.png"
-            alt="Dom tree for the code above"
-          />
+          <figure>
+            <img
+              class="image-responsive"
+              src="./assets/img/dom-tree-2.png"
+              alt="Схема DOM для кода выше"
+            />
+            <figcaption>Схема DOM для кода выше</figcaption>
+          </figure>
           <blockquote>
             <p>
               <span class="text-important">
@@ -264,11 +276,14 @@ setTimeout(() => document.body.style.background = '', 3000);
           </pre
             >
           </code>
-          <img
-            class="image-responsive"
-            src="./assets/img/dom-tree-3.png"
-            alt="Dom tree for the code above"
-          />
+          <figure>
+            <img
+              class="image-responsive"
+              src="./assets/img/dom-tree-3.png"
+              alt="Схема DOM для кода выше"
+            />
+            <figcaption>Схема DOM для кода выше</figcaption>
+          </figure>
           <p>
             Здесь мы видим узел нового типа – комментарий, обозначенный как
             <code class="inline-code">#comment</code>, между двумя текстовыми
@@ -340,11 +355,16 @@ setTimeout(() => document.body.style.background = '', 3000);
             Elements.
           </p>
           <p>Выглядит примерно так:</p>
-          <img
-            class="image-responsive"
-            src="./assets/img/elks.png"
-            alt="screenshot of a browser elements tab"
-          />
+          <figure>
+            <img
+              class="image-responsive"
+              src="./assets/img/elks.png"
+              alt="скриншот вкладки 'elements' браузера с открытым файлом elks.html"
+            />
+            <figcaption>
+              Исследование DOM при помощи инструментов разработчика
+            </figcaption>
+          </figure>
           <p>
             Вы можете увидеть DOM, понажимать на элементы, детально рассмотреть
             их и так далее.
@@ -413,11 +433,17 @@ setTimeout(() => document.body.style.background = '', 3000);
             <code class="inline-code">$0.style.background = 'red'</code> сделает
             выбранный элемент красным, как здесь:
           </p>
-          <img
-            class="image-responsive"
-            src="./assets/img/domconsole0.png"
-            alt="screenshot of a browser console"
-          />
+          <figure>
+            <img
+              class="image-responsive"
+              src="./assets/img/domconsole0.png"
+              alt="скриншот вкладки 'elements' браузера"
+            />
+            <figcaption>
+              Меняем цвет фона первого элемента упорядоченного списка на красный
+            </figcaption>
+          </figure>
+
           <p>Это мы посмотрели как получить узел из Elements в Console.</p>
           <p>
             Есть и обратный путь: если есть переменная
@@ -430,11 +456,14 @@ setTimeout(() => document.body.style.background = '', 3000);
             Или мы можем просто вывести DOM-узел в консоль и исследовать «на
             месте», как <code class="inline-code">document.body </code>ниже:
           </p>
-          <img
-            class="image-responsive"
-            src="./assets/img/domconsole1.png"
-            alt="screenshot of a browser console"
-          />
+          <figure>
+            <img
+              class="image-responsive"
+              src="./assets/img/domconsole1.png"
+              alt="screenshot of a browser console"
+            />
+            <figcaption>Выводим DOM-узел в консоль</figcaption>
+          </figure>
           <p>
             Это может быть полезно для отладки. В следующей главе мы рассмотрим
             доступ и изменение DOM при помощи JavaScript.
@@ -478,5 +507,10 @@ setTimeout(() => document.body.style.background = '', 3000);
         </section>
       </div>
     </main>
+    <footer class="footer">
+      <div class="container-main">
+        <p class="text-footer">2022</p>
+      </div>
+    </footer>
   </body>
 </html>
